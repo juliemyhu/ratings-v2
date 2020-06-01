@@ -36,6 +36,21 @@ for movie in movie_data:
     format = "%Y-%m-%d"
     release_date = datetime.strptime(movie['release_date'], format)
 
-    db_movie = crud.create_movie(title,overview, release_date, poster_path) 
+    db_movie = crud.create_movie(title, overview, release_date, poster_path) 
 
     movies_in_db.append(db_movie)
+
+#creates 10 users, each making 10 ratings
+for n in range(10):
+
+	email = f'user{n}@test.com' 
+	password = 'test'
+
+	user = crud.create_user(email, password)
+
+	for _ in range(10):
+		random_movie = choice(movies_in_db)
+		score = randint(1,5)
+
+		crud.create_rating(user,random_movie, score)
+
