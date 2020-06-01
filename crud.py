@@ -29,8 +29,17 @@ def get_movies():
 	return Movie.query.all()
 
 def get_movie_by_id(movie_id):
+	"""return movie id that client clicks on"""
 
 	return Movie.query.get(movie_id)
+
+def get_users():
+
+	return User.query.all()
+
+def get_user_by_id(user_id):
+
+	return User.query.get(user_id)
 
 def create_rating(user, movie, score):
 	"""Create and return a new rating"""
