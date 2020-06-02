@@ -67,6 +67,24 @@ def register_user():
 	return redirect('/')
 
 
+@app.route('/login', methods = ['POST'])
+def login():
+
+	email = request.form.get('email')
+	password = request.form.get('password')
+
+	user = crud.get_user_by_email(email)
+
+	if user:
+		if user.password == password:
+			session['email'] = request.form['email']
+			flash('Logged in!')
+		else: 
+			flash('Password does not match. Try again.')
+	else:
+		flash('No account with this email')
+
+	return redirect('/')
 
 
 if __name__ == '__main__':
