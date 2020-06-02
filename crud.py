@@ -13,6 +13,23 @@ def create_user(email, password):
 	return user
 
 
+
+
+def get_users():
+	"""return all users"""
+
+	return User.query.all()
+
+def get_user_by_id(user_id):
+	"""return a user by primary key. """
+
+	return User.query.get(user_id)
+
+def get_user_by_email(email):
+	"""return user that matches email"""
+
+	return User.query.filter(User.email == email).first() 
+
 # create_movie
 def create_movie(title, overview, release_date, poster_path):
 	"""Create and return a new movie"""
@@ -32,15 +49,7 @@ def get_movie_by_id(movie_id):
 	"""return movie id that client clicks on"""
 
 	return Movie.query.get(movie_id)
-
-def get_users():
-
-	return User.query.all()
-
-def get_user_by_id(user_id):
-
-	return User.query.get(user_id)
-
+	
 def create_rating(user, movie, score):
 	"""Create and return a new rating"""
 
